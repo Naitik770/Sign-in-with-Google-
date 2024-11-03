@@ -27,7 +27,8 @@
     // Handle the Google sign-in response
     function handleCredentialResponse(response) {
       console.log("Encoded JWT ID token: " + response.credential);
-      // You can send this token to your backend for verification
+      // Redirect to the new page after sign-in
+      window.location.href = "welcome.html"; // Change "welcome.html" to your desired page
     }
 
     window.onload = function () {
