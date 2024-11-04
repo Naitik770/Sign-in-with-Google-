@@ -11,7 +11,7 @@
   <!-- Google Sign-In button -->
   <div id="g_id_onload"
        data-client_id="390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com"
-       data-login_uri="https://sign-in-with-googleaccount.netlify.app/Index.html"
+       data-login_uri="https://sign-in-with-googleaccount.netlify.app/index.html"
        data-auto_prompt="false">
   </div>
   <div class="g_id_signin"
@@ -26,9 +26,10 @@
   <script>
     // Handle the Google sign-in response
     function handleCredentialResponse(response) {
-      console.log("Encoded JWT ID token: " + response.credential);
-      // Redirect to the new page after sign-in
-      window.location.href = "https://sign-in-with-googleaccount.netlify.app/welcome.html"; // Change "welcome.html" to your desired page
+      // Save the token in localStorage for use on the welcome page
+      localStorage.setItem("id_token", response.credential);
+      // Redirect to the welcome page
+      window.location.href = "welcome.html";
     }
 
     window.onload = function () {
