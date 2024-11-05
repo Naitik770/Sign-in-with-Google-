@@ -11,7 +11,8 @@
   <!-- Google Sign-In button -->
   <div id="g_id_onload"
        data-client_id="390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com"
-       data-auto_prompt="true">
+       data-auto_prompt="false"
+       data-callback="handleCredentialResponse"> <!-- Added data-callback attribute -->
   </div>
   <div class="g_id_signin"
        data-type="standard"
@@ -34,7 +35,7 @@
     window.onload = function () {
       google.accounts.id.initialize({
         client_id: "390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com",
-        callback: handleCredentialResponse
+        callback: handleCredentialResponse // Assign the callback function here as well
       });
       google.accounts.id.prompt(); // Automatically prompts the user for sign-in
     }
