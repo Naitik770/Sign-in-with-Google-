@@ -3,37 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
+  <title>Profile</title>
   <style>
-    /* Center content and improve profile picture styling */
+    /* Styling for layout and profile appearance */
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-family: Arial, sans-serif;
-      margin-top: 50px;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
     }
 
     #profile-picture {
       display: none;
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      margin-top: 20px;
+      margin-bottom: 20px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
 
+    .info-section {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 1em;
+    }
+
+    .info-icon {
+      font-size: 1.5em;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    .info-label {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
     #user-info {
-      text-align: center;
-      font-size: 1.2em;
-      margin-top: 10px;
+      text-align: left;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to the site!</h1>
-  <p id="user-info">Loading user information...</p>
+  <h1>Profile</h1>
   <img id="profile-picture" alt="Profile Picture">
+  
+  <div id="user-info">
+    <p class="info-section">
+      <span class="info-icon">📷</span> 
+      <span id="profile-pic-placeholder">Display profile picture here</span>
+    </p>
+    <p class="info-section">
+      <span class="info-icon">📱</span>
+      <span class="info-label">Username:</span>
+      <span id="username-placeholder">display username here</span>
+    </p>
+    <p class="info-section">
+      <span class="info-icon">✉️</span>
+      <span class="info-label">Email:</span>
+      <span id="email-placeholder">display email here</span>
+    </p>
+  </div>
 
   <script>
     // Function to decode JWT
@@ -52,16 +90,15 @@
       const userInfo = parseJwt(idToken);
 
       // Display user information
-      document.getElementById("user-info").innerHTML = `
-        <strong>Name:</strong> ${userInfo.name} <br>
-        <strong>Email:</strong> ${userInfo.email}
-      `;
+      document.getElementById("username-placeholder").textContent = userInfo.name || "Username not available";
+      document.getElementById("email-placeholder").textContent = userInfo.email || "Email not available";
 
       // Display profile picture if available
       if (userInfo.picture) {
         const profilePic = document.getElementById("profile-picture");
         profilePic.src = userInfo.picture;
         profilePic.style.display = "block";
+        document.getElementById("profile-pic-placeholder").style.display = "none";
       }
     } else {
       document.getElementById("user-info").textContent = "No user information available.";
