@@ -31,8 +31,7 @@
 
     .info-section {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       margin: 10px 0;
       font-size: 1em;
     }
@@ -41,6 +40,11 @@
       font-size: 1.5em;
       color: #007bff;
       margin-right: 10px;
+    }
+
+    .info-text {
+      display: flex;
+      flex-direction: column;
     }
 
     .info-label {
@@ -58,53 +62,56 @@
   <img id="profile-picture" alt="Profile Picture">
   
   <div id="user-info">
-    <p class="info-section">
-      <span class="info-icon"></span> 
-      <span id="profile-pic-placeholder">Display profile picture here</span>
-    </p>
-    <p class="info-section">
+    <div class="info-section">
+      <span class="info-icon"></span>
+      <span id="profile-pic-placeholder" class="info-text">Display profile picture here</span>
+    </div>
+    <div class="info-section">
       <span class="info-icon">📄</span>
-      <span class="info-label">Username:</span>
-      <span id="username-placeholder" class="info-value">display username here</span>
-    </p>
-    
-    <p class="info-section">
+      <div class="info-text">
+        <span class="info-label">Username:</span>
+        <span id="username-placeholder" class="info-value">display username here</span>
+      </div>
+    </div>
+    <div class="info-section">
       <span class="info-icon">✉️</span>
-      <span class="info-label">Email:</span>
-      <span id="email-placeholder" class="info-value">display email here</span>
-    </p>
+      <div class="info-text">
+        <span class="info-label">Email:</span>
+        <span id="email-placeholder" class="info-value">display email here</span>
+      </div>
+    </div>
   </div>
-
-  <script>
-    // Function to decode JWT
-    function parseJwt(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    }
-
-    // Get the token from localStorage
-    const idToken = localStorage.getItem("id_token");
-    if (idToken) {
-      const userInfo = parseJwt(idToken);
-
-      // Display user information
-      document.getElementById("username-placeholder").textContent = userInfo.name || "Username not available";
-      document.getElementById("email-placeholder").textContent = userInfo.email || "Email not available";
-
-      // Display profile picture if available
-      if (userInfo.picture) {
-        const profilePic = document.getElementById("profile-picture");
-        profilePic.src = userInfo.picture;
-        profilePic.style.display = "block";
-        document.getElementById("profile-pic-placeholder").style.display = "none";
-      }
-    } else {
-      document.getElementById("user-info").textContent = "No user information available.";
-    }
-  </script>
+<script>
+       // Function to decode JWT
+       function parseJwt(token) {
+          const base64Url = token.split('.')[1];
+          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+          const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          }).join(''));
+          return JSON.parse(jsonPayload);
+       }
+   
+       // Get the token from localStorage
+       const idToken = localStorage.getItem("id_token");
+       if (idToken) {
+          const userInfo = parseJwt(idToken);
+   
+          // Display user information
+          document.getElementById("username-placeholder").textContent = userInfo.name || "Username not available";
+          document.getElementById("email-placeholder").textContent = userInfo.email || "Email not available";
+   
+          // Display profile picture if available
+          if (userInfo.picture) {
+             const profilePic = document.getElementById("profile-picture");
+             profilePic.src = userInfo.picture;
+             profilePic.style.display = "block";
+             document.getElementById("profile-pic-placeholder").style.display = "none";
+          }
+       } else {
+          document.getElementById("user-info").textContent = "No user information available.";
+       }
+       
+</script>
 </body>
 </html>
