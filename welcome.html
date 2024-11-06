@@ -88,7 +88,7 @@
       </div>
     </div>
   </div>
-  <script>
+<script>
     // Function to decode JWT
     function parseJwt(token) {
        const base64Url = token.split('.')[1];
@@ -108,16 +108,17 @@
        document.getElementById("username-placeholder").textContent = userInfo.name || "Username not available";
        document.getElementById("email-placeholder").textContent = userInfo.email || "Email not available";
 
-       // Display profile picture if available
+       // Display profile picture with higher resolution if available
        if (userInfo.picture) {
           const profilePic = document.getElementById("profile-picture");
-          profilePic.src = userInfo.picture;
+          profilePic.src = userInfo.picture + "?sz=200"; // Request higher resolution (200x200 pixels)
           profilePic.style.display = "block";
           document.getElementById("profile-pic-placeholder").style.display = "none";
        }
     } else {
        document.getElementById("user-info").textContent = "No user information available.";
     }
-    </script>
+</script>
+
 </body>
 </html>
