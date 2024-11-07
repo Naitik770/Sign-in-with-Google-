@@ -12,48 +12,26 @@
       /* Center the sign-in button on the page */
       body {
          display: flex;
-         justify-content: top;
-         align-items: top;
-         margin: 10px;
+         justify-content: center;
+         align-items: center;
+         height: 100vh; /* Center vertically */
+         margin: 0;
          background-color: #f7f7f7;
-         /* Optional background color */
       }
-      
-      /* Adjust the Google Sign-In button style */
-      .g_id_signin {
-         width: 300px;
-         
-         justify-content: top;
-      }
-      
-      /* Customize the button */
-      .g_id_signin div {
-         font-weight: bold;
-         border-radius: 500px;
-         background-color: #fff;
-      }
-      
-
-
    </style>
   <!-- Google Sign-In button -->
   <div id="g_id_onload"
        data-client_id="390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com"
        data-auto_prompt="false"
-       data-callback="handleCredentialResponse"
-       data-itp_support="true"> <!-- Added data-itp_support attribute -->
+       data-callback="handleCredentialResponse">
   </div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="rectangular"
-     data-theme="outline"
-     data-text="sign_up_with" <!-- Change this to "continue_with" or "signin" -->
-     data-size="large"
-     data-logo_alignment="left">
-</div>
-
-
+  <div class="g_id_signin"
+       data-type="standard"
+       data-shape="rectangular"
+       data-theme="outline"
+       data-size="large"
+       data-logo_alignment="left">
+  </div>
 
   <script>
     // Handle the Google sign-in response
@@ -67,7 +45,7 @@
     window.onload = function () {
       google.accounts.id.initialize({
         client_id: "390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com",
-        callback: handleCredentialResponse // Assign the callback function here as well
+        callback: handleCredentialResponse
       });
       google.accounts.id.prompt(); // Automatically prompts the user for sign-in
     }
