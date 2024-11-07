@@ -8,11 +8,40 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+   <style>
+      /* Center the sign-in button on the page */
+      body {
+         display: flex;
+         justify-content: top;
+         align-items: top;
+         margin: 10px;
+         background-color: #f7f7f7;
+         /* Optional background color */
+      }
+      
+      /* Adjust the Google Sign-In button style */
+      .g_id_signin {
+         width: 300px;
+         
+         justify-content: top;
+      }
+      
+      /* Customize the button */
+      .g_id_signin div {
+         font-weight: bold;
+         border-radius: 500px;
+         background-color: #fff;
+      }
+      
+      /* Hover effect */
+
+   </style>
   <!-- Google Sign-In button -->
   <div id="g_id_onload"
        data-client_id="390800348887-l6ittvp96nu0veds0hdqeevmsfg26usp.apps.googleusercontent.com"
        data-auto_prompt="false"
-       data-callback="handleCredentialResponse"> <!-- Added data-callback attribute -->
+       data-callback="handleCredentialResponse"
+       data-itp_support="true"> <!-- Added data-itp_support attribute -->
   </div>
   <div class="g_id_signin"
        data-type="standard"
